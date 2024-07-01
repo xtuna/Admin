@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Interface</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-dark border-right" id="sidebar-wrapper">
+            <div class="sidebar-heading text-white">LAGOON</div>
+            <div class="list-group list-group-flush">
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Dashboard</a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Products</a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Orders</a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Reviews</a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Users</a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Logout</a>
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+            </nav>
+            <div class="container-fluid">
+                <h1 class="mt-4">List of Stores</h1>
+                <button class="btn btn-primary mb-4">Add Store</button>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Store ID</th>
+                            <th scope="col">Store Name</th>
+                            <th scope="col">Stall Number</th>
+                            <th scope="col">Store Image</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>WaffleStore</td>
+                            <td>14</td>
+                            <td><img src="waffle.png" alt="Waffle Store Image" style="width: 50px;"></td>
+                            <td>
+                                <button class="btn btn-success">Edit</button>
+                                <button class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Coffee Shop</td>
+                            <td>5</td>
+                            <td><img src="coffee.png" alt="Coffee Shop Image" style="width: 50px;"></td>
+                            <td>
+                                <button class="btn btn-success">Edit</button>
+                                <button class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Bootstrap and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+</body>
+
+</html>
