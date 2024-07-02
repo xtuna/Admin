@@ -1,0 +1,32 @@
+-- Create the database
+CREATE DATABASE pup_lagoon;
+
+-- Use the database
+USE pup_lagoon;
+
+-- Create the admins table
+CREATE TABLE `admins` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `username` VARCHAR(255) NOT NULL,
+    `password` VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE `stores` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(255) NOT NULL,
+    `image` VARCHAR(255) NOT NULL
+);
+
+
+-- Create the users table
+CREATE TABLE `users` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `fullname` VARCHAR(255) NOT NULL,
+    `email` VARCHAR(255) NOT NULL,
+    `type` ENUM('ADMIN', 'CUSTOMER', 'SELLER') NOT NULL,
+    `status` ENUM('ACTIVE', 'DISABLED') NOT NULL
+);
+
+
+INSERT INTO admins (username, password) VALUES ('admin', '$2y$10$XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+UPDATE admins SET password = 'admin123' WHERE username = 'admin';
