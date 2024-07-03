@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Seller Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="includes/style/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+
+</head>
+<body>
+
+<?php include('includes/sidebar.php'); ?>
+
+<?php 
+session_start();
+
+
+// Check if the user is logged in
+if(!isset($_SESSION['auth'])) {
+    $_SESSION['status'] = "You must log in first!";
+    $_SESSION['status_code'] = "warning";
+    header("Location: ../login.php");
+    exit(0);
+}
+
+$user_id = $_SESSION['user_id']; // This is the user's ID
+?>
+
+
+
+<?php 
+if(isset($_SESSION['status']) && $_SESSION['status'] != '')
+{
+?>
+
+<script>
+    Swal.fire({
+    title: '<?php echo $_SESSION['status_code']?>',
+    text: '<?php echo $_SESSION['status']?>',
+    icon: '<?php echo $_SESSION['status_code']?>'
+    });
+</script>
+    
+<?php
+    unset($_SESSION['status']);
+}
+?>
+
+
+
+<div class="modal fade" id="inserdata" tabindex="-1" aria-labelledby="inserdataLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="inserdataLabel">ADD PRODUCTS</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="pages/addStore.php" method="POST" enctype="multipart/form-data">
+      <div class="modal-body">
+
+        <div class="form-group mb-3">
+            <label> Store Name</label>
+            <input type="text" class="form-control" name="storeName" placeholder="Enter Product Name">
+        </div>
+
+        <div class="form-group mb-3">
+            <label> Stall Number</label>
+            <input type="number" class="form-control" name="stallNumber" placeholder="Enter Stock">
+        </div>
+
+        <div class="form-group mb-3">
+            <label> Store Image</label>
+            <input type="file" class="form-control" name="storeImage" accept=".jpg, .png, .jpeg">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" name="save_data" class="btn btn-primary">Add</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="text-center">LIST OF STORES</h4>
+                    <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#inserdata">
+                        Add Store
+                    </button>
+                </div>
+                <div class="card-body">
+
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                        <th scope="col">Store ID</th>
+                        <th scope="col">Store Name</th>
+                        <th scope="col">Stall Number</th>
+                        <th scope="col">Store Image</th>
+                        <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    <?php 
+                    
+                    $connection = mysqli_connect("localhost", "root", "", "demo");
+                    
+                    $fetch_query = "SELECT * FROM store";
+                    $fetch_query_run = mysqli_query($connection, $fetch_query);
+
+                    if(mysqli_num_rows($fetch_query_run) > 0)
+                    {
+                        while($row = mysqli_fetch_array($fetch_query_run))
+                        {
+                            // ;
+                            ?>
+
+                        <tr>
+                        <td><?php echo $row['StoreID'] ?></td>
+                        <td><?php echo $row['StoreName'] ?></td>
+                        <td><?php echo $row['StallNumber'] ?></td>
+                        <td><img src="uploads/<?php echo $row['StoreImage']; ?>" alt="Store Image" style="max-width: 100px;"></td>
+                        <td>
+                            <a href="" class="btn btn-success btn-sm">Edit</a>
+                            <a href="" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                        </tr>
+
+                        <?php
+                        }
+                    }
+                    else
+                    {
+                        ?>
+                            <tr colspan="5">No Record Found</tr>
+                        <?php
+                    }
+                    
+                    ?>
+                    
+                    </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<?php include('includes/footer.php'); ?>
+</body>
+</html>
+    

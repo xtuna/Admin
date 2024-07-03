@@ -1,0 +1,123 @@
+/* Sidebar Styles */
+#sidebar-wrapper {
+    width: 250px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    z-index: 1000;
+    background-color: #f8f9fa;
+    padding-top: 20px;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+    width: 100%;
+}
+
+#page-content-wrapper {
+    min-width: 100%;
+    padding-left: 250px;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: -250px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    padding-left: 0;
+}
+
+/* css */
+/* Example new color palette */
+:root {
+    --primary-color: #343a40;
+    --secondary-color: #ffc107;
+    --hover-color: #495057;
+    --text-color: #ffffff;
+    --background-color: #f8f9fa;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    height: 100vh;
+    width: 250px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.sidebar .logo {
+    padding: 20px;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.sidebar .logo img {
+    width: 100%;
+    max-width: 150px;
+    margin: 0 auto;
+    display: block;
+}
+
+.sidebar .nav-item {
+    padding: 15px 20px;
+    font-size: 1.2em;
+}
+
+.sidebar .nav-item a {
+    color: var(--text-color);
+    text-decoration: none;
+    display: block;
+    width: 100%;
+}
+
+.sidebar .nav-item:hover a,
+.sidebar .nav-item.active a {
+    text-decoration: underline;
+    background-color: var(--hover-color);
+    border-radius: 5px;
+}
+
+/* Content Styles */
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    background-color: var(--background-color);
+}
+
+/* Cards and Buttons */
+.card {
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-title {
+    font-size: 1.25em;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--hover-color);
+    border-color: var(--hover-color);
+}
